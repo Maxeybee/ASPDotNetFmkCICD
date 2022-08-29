@@ -1,0 +1,8 @@
+﻿<SSOSettings>
+  <OAuthURL>https://fssfed.ge.com/fss/as/authorization.oauth2</OAuthURL>
+  <OAuthTokenURL>https://fssfed.ge.com/fss/as/token.oauth2</OAuthTokenURL>
+  <OAuthUserURL>https://fssfed.ge.com/fss/idp/userinfo.openid</OAuthUserURL>
+  <AppClientID>REPortal</AppClientID>
+  <AppRedirectURL>http://qa-deonlinestore.energy.ge.com/MyWindDashboard/SSORedirect.aspx</AppRedirectURL>
+  <AppClientSecret>Portal@2021s</AppClientSecret>
+</SSOSettings>

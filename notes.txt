@@ -1,0 +1,56 @@
+================================================
+
+install visual studio MSBuild 4.8
+Web development build tools
+4.8 framework SDK
+
+
+add MSBuild & MSDeploy from IIS to PATH (admin)
+
+change conn strings & sso config with QA & prod setup
+
+================================================
+
+
+msdeploy.exe  -verb:sync -source:contentPath="someDirectory" -dest:contentPath=
+
+msdeploy.exe -verb:sync -source:content="" -dest:contentPath=""
+msbuild /p:Configuration=release
+		/p:DeployOnBuild=True 
+		/p:DeployTarget=MSDeployPublish
+		/p:MsDeployServiceUrl=https://targetServer:8172/MsDeploy.axd
+		/p:DeployIisAppPath=MySite 
+		/p:AllowUntrustedCertificate=True
+		/p:Username=
+		/p:AuthType=NTLM
+		
+
+
+msbuild MyWindDashboard.sln /p:DeployOnBuild=True /p:TargetFrameworkVersion=v4.8 /p:WebPublishMethod=Package /p:PackageAsSingleFile=True /p:PackageLocation="MWD.zip"
+
+/P:IncludeIisSettings=true /P:IncludeAppPool=true
+/property:projectname=MyWindDashboard
+/p:configuration=release;DeployIISAppPath="what_ever_name_you_want"
+BUILD zipped :
+msbuild ./MyWindDashboard.sln -t:Build /p:TargetFrameworkVersion=v4.8 /p:DeployOnBuild=True /p:WebPublishMethod=Package /p:PackageAsSingleFile=True /p:PackageLocation="MWD_Package.zip" /p:configuration=release /p:DeployIISAppPath="Default Web Site/MyWindDashboardTest"
+
+PATH of Application =>
+C:\jenkins-agent\workspace\My_Portal_Pipeline_stage\MyWindDashboard\MWD.zip\Content\C_C\jenkins-agent\workspace\My_Portal_Pipeline_stage\MyWindDashboard\obj\Debug\Package\PackageTmp
+
+msdeploy -verb:sync -source:package="C:\Users\212700114\Documents\Projects\MyWIndDashboard\MyWindDashboard\MWD.zip" -dest:auto 
+
+-setParam:kind=ProviderPath,scope=iisApp,value=dev.MWD.org
+
+C:\jenkins-agent\workspace\My_Portal_Pipeline_stage\MyWindDashboard
+
+DEPLOY stage PATH: 
+msdeploy -verb:sync -source:package="C:\jenkins-agent\workspace\My_Portal_Pipeline_stage\MyWindDashboard\MWD_Package.zip" -dest:auto 
+
+set app /app.name:MyWindDashboardTest /applicationPool:.NET v4.5  /p:IncludeIisSettings=True
+msbuild  ./MyWindDashboard.sln -t:Build /m /p:Platform="Any CPU" /detailedsummary /p:TargetFrameworkVersion=v4.8 /p:DeployOnBuild=True /p:WebPublishMethod=Package /p:PackageAsSingleFile=False /p:PackageLocation=MWD /p:configuration=release /p:DeployIISAppPath="Default Web Site/MyWindDashboardTest"
+tionString="Provider=Microsoft.Jet.OLEDB.4.0;Data Source={0};Extended Properties=Excel 8.0" />
+
+msbuild ./MyWindDashboard.sln -t:Build /p:TargetFrameworkVersion=4.8 /p:configuration=release
+msbuild ./MyWindDashboard.sln -t:Build /p:TargetFrameworkVersion=v4.8 /p:DeployOnBuild=True /p:WebPublishMethod=Package /p:configuration=release /p:DeployIISAppPath="Default Web Site/MyWindDashboardTest" /p:PackageAsSingleFile=True /p:PackageLocation="MWD.zip"
+msbuild ./GESSOUtility.csproj -t:Build /p:TargetFrameworkVersion=v4.8 /p:DeployOnBuild=True /p:WebPublishMethod=Package /p:configuration=release /p:DeployIISAppPath="Default Web Site/MyWindDashboardTest" /p:PackageAsSingleFile=True /p:PackageLocation="GESSO.zip"
+
